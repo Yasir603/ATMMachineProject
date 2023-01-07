@@ -7,12 +7,6 @@
  *
  * @author yasir
  */
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 public class ATM extends javax.swing.JFrame {
 
     /**
@@ -197,36 +191,13 @@ public class ATM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpassActionPerformed
 
-    Connection con =null;
-    PreparedStatement pst =null;
-    ResultSet res=null;
-    Statement st =null;
+   
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
-        if(txtacc.getText().isEmpty()|| txtpass.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "plz fill missing information");
-        }
-        else
-        {
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/atmdb","root","123");
-                PreparedStatement Add= con.prepareStatement("Insert into login values(?,?)" );
-                Add.setInt(1,Integer.valueOf(txtacc.getText()));
-                Add.setInt(2,Integer.valueOf(txtpass.getText()));
-                int row =Add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Account login succesfully");
-                con.close();
-            }
-            catch(Exception e)
-                    {
-                        JOptionPane.showMessageDialog(this, e);
-                    }
-        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
