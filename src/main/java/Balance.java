@@ -1,3 +1,11 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -30,9 +38,9 @@ public class Balance extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        CBalance = new javax.swing.JTextField();
+        MTrans = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,29 +61,39 @@ public class Balance extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 36)); // NOI18N
         jLabel2.setText("Checking Balance");
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        CBalance.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        CBalance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                CBalanceActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton3.setText("Make Transection");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
-        jButton4.setText("Back");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        MTrans.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        MTrans.setText("Make Transection");
+        MTrans.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        MTrans.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                MTransMouseClicked(evt);
+            }
+        });
+        MTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MTransActionPerformed(evt);
+            }
+        });
+
+        Back.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        Back.setText("Back");
+        Back.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Back.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackMouseClicked(evt);
+            }
+        });
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
             }
         });
 
@@ -89,7 +107,7 @@ public class Balance extends javax.swing.JFrame {
                         .addGap(141, 141, 141)
                         .addComponent(jLabel6)
                         .addGap(28, 28, 28)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(jLabel2)))
@@ -98,10 +116,10 @@ public class Balance extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(317, 317, 317)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(jButton3)))
+                        .addComponent(MTrans)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -112,11 +130,11 @@ public class Balance extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(MTrans)
                 .addGap(50, 50, 50)
-                .addComponent(jButton4)
+                .addComponent(Back)
                 .addGap(18, 18, 18))
         );
 
@@ -175,19 +193,41 @@ public class Balance extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+            Connection Con = null;
+            PreparedStatement pst =null;
+            ResultSet Rs = null;
+            Statement St = null;
+    private void CBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBalanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        
+         String Query = "select * from deposit where amount=";
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+            St =(Statement) Con.createStatement();
+            Rs = St.executeQuery(Query);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_CBalanceActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void MTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTransActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_MTransActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
             new ATMMain().setVisible(true);
                    this.dispose();         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_BackMouseClicked
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void MTransMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTransMouseClicked
+        // TODO add your handling code here:
+         new WithDraw().setVisible(true);
+                   this.dispose(); 
+    }//GEN-LAST:event_MTransMouseClicked
 
     /**
      * @param args the command line arguments
@@ -225,14 +265,14 @@ public class Balance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton Back;
+    private javax.swing.JTextField CBalance;
+    private javax.swing.JButton MTrans;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,12 @@ public class ATMMain extends javax.swing.JFrame {
     public ATMMain() {
         initComponents();
     }
-
+    int MyAccNum;
+    public ATMMain(int AccNum) {
+        initComponents();
+        MyAccNum = AccNum;
+        Number.setText(""+MyAccNum);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,12 +35,14 @@ public class ATMMain extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        Fcash = new javax.swing.JButton();
+        deposit = new javax.swing.JButton();
+        Cpin = new javax.swing.JButton();
+        Withdraw = new javax.swing.JButton();
+        Cbalance = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        Number = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,114 +85,138 @@ public class ATMMain extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
-        jLabel1.setText("SELECT OPTION");
+        jLabel1.setText("Account Number:");
 
-        jButton3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton3.setText("Fast Cash");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        Fcash.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Fcash.setText("Fast Cash");
+        Fcash.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Fcash.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                FcashMouseClicked(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton4.setText("Deposit");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        deposit.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        deposit.setText("Deposit");
+        deposit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        deposit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                depositMouseClicked(evt);
             }
         });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        deposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                depositActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton5.setText("Change Pin");
-        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cpin.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Cpin.setText("Change Pin");
+        Cpin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Cpin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                CpinMouseClicked(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton6.setText("With Draw");
-        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        Withdraw.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Withdraw.setText("With Draw");
+        Withdraw.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Withdraw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                WithdrawMouseClicked(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton7.setText("Check Balance");
-        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cbalance.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Cbalance.setText("Check Balance");
+        Cbalance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Cbalance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+                CbalanceMouseClicked(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jButton8.setText("Back");
-        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        back.setText("Back");
+        back.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
+                backMouseClicked(evt);
             }
         });
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
+
+        Number.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        Number.setText("SELECT ");
+
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel3.setText("SELECT OPTION");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7))
-                .addGap(184, 184, 184))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Fcash)
+                            .addComponent(Cpin))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Withdraw)
+                            .addComponent(back)
+                            .addComponent(Cbalance))
+                        .addGap(184, 184, 184))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(deposit)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(252, 252, 252)
+                    .addComponent(jLabel3)
+                    .addContainerGap(389, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton6)
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(Number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addComponent(Withdraw)
                         .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton7)))
+                            .addComponent(Fcash)
+                            .addComponent(Cbalance)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton4)))
+                        .addGap(64, 64, 64)
+                        .addComponent(deposit)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton8))
+                    .addComponent(Cpin)
+                    .addComponent(back))
                 .addGap(62, 62, 62))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(jLabel3)
+                    .addContainerGap(240, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,43 +244,43 @@ public class ATMMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_depositActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void depositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositMouseClicked
                 new Deposit().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_depositMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void FcashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FcashMouseClicked
                 new FastCash().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_FcashMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void CpinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CpinMouseClicked
                 new ChangePin().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_CpinMouseClicked
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+    private void WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WithdrawMouseClicked
                 new WithDraw().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6MouseClicked
+    }//GEN-LAST:event_WithdrawMouseClicked
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+    private void CbalanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CbalanceMouseClicked
                 new Balance().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_CbalanceMouseClicked
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-                   new ATMMain().setVisible(true);
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+                   new ATM().setVisible(true);
                    this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8MouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -287,13 +318,15 @@ public class ATMMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton Cbalance;
+    private javax.swing.JButton Cpin;
+    private javax.swing.JButton Fcash;
+    private javax.swing.JLabel Number;
+    private javax.swing.JButton Withdraw;
+    private javax.swing.JButton back;
+    private javax.swing.JButton deposit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

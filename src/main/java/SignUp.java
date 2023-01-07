@@ -48,6 +48,7 @@ public class SignUp extends javax.swing.JFrame {
         AccNo = new javax.swing.JTextField();
         AccPin = new javax.swing.JTextField();
         SignUp = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel6.setText(" Your Balance  is :");
@@ -148,6 +149,24 @@ public class SignUp extends javax.swing.JFrame {
                 SignUpMouseClicked(evt);
             }
         });
+        SignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignUpActionPerformed(evt);
+            }
+        });
+
+        Back.setText("Back");
+        Back.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackMouseClicked(evt);
+            }
+        });
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -159,7 +178,7 @@ public class SignUp extends javax.swing.JFrame {
                         .addGap(238, 238, 238)
                         .addComponent(jLabel3))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(122, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
@@ -177,11 +196,13 @@ public class SignUp extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(83, 83, 83)
                                 .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(249, 249, 249))
+                .addGap(164, 164, 164)
+                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +228,9 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AccPin, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,7 +288,7 @@ public class SignUp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "missing information");
         }else{
            try{
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
                PreparedStatement Add = Con.prepareStatement("insert into signup values(?,?,?,?)");
                Add.setString(1,AccName.getText());
                Add.setInt(2, Integer.valueOf(AccCnic.getText()));
@@ -281,6 +304,20 @@ public class SignUp extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_SignUpMouseClicked
+
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+        // TODO add your handling code here:
+        new ATM().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackMouseClicked
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +359,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField AccName;
     private javax.swing.JTextField AccNo;
     private javax.swing.JTextField AccPin;
+    private javax.swing.JButton Back;
     private javax.swing.JButton SignUp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
