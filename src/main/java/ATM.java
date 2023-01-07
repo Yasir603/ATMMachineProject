@@ -236,7 +236,7 @@ public class ATM extends javax.swing.JFrame {
     }else{
          String Query = "select * from signup where cnic= '"+AccNum.getText()+"' and pincode="+AccPin.getText()+"";
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","admin");
             St =(Statement) Con.createStatement();
             Rs = St.executeQuery(Query);
             if(Rs.next()){

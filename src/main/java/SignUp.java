@@ -265,7 +265,7 @@ public class SignUp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "missing information");
         }else{
            try{
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
                PreparedStatement Add = Con.prepareStatement("insert into signup values(?,?,?,?)");
                Add.setString(1,AccName.getText());
                Add.setInt(2, Integer.valueOf(AccCnic.getText()));
