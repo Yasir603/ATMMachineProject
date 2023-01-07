@@ -1,10 +1,12 @@
 
-import java.beans.Statement;
+
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -235,8 +237,8 @@ public class ATM extends javax.swing.JFrame {
          String Query = "select * from signup where cnic= '"+AccNum.getText()+"' and pincode="+AccPin.getText()+"";
         try {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
-            St = (Statement) Con.createStatement();
-            Rs = St.execute(String Query);
+            St =(Statement) Con.createStatement();
+            Rs = St.executeQuery(Query);
             if(Rs.next()){
                 new ATMMain().setVisible(true);
                 this.dispose();
