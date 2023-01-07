@@ -236,7 +236,7 @@ public class ATM extends javax.swing.JFrame {
         try {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
             St = (Statement) Con.createStatement();
-            Rs = St.executeQuery(Query);
+            Rs = St.execute(String Query);
             if(Rs.next()){
                 new ATMMain().setVisible(true);
                 this.dispose();
