@@ -47,7 +47,7 @@ public class SignUp extends javax.swing.JFrame {
         AccCnic = new javax.swing.JTextField();
         AccNo = new javax.swing.JTextField();
         AccPin = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        SignUp = new javax.swing.JButton();
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel6.setText(" Your Balance  is :");
@@ -141,11 +141,11 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Submit");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        SignUp.setText("Submit");
+        SignUp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        SignUp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                SignUpMouseClicked(evt);
             }
         });
 
@@ -180,7 +180,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(249, 249, 249))
         );
         jPanel3Layout.setVerticalGroup(
@@ -207,7 +207,7 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AccPin, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -252,7 +252,13 @@ public class SignUp extends javax.swing.JFrame {
     ResultSet Rs = null;
     Statement St = null;
     
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void Clear(){
+        AccName.setText("");
+        AccCnic.setText("");
+        AccNo.setText("");
+        AccPin.setText("");
+    }
+    private void SignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpMouseClicked
         // TODO add your handling code here:
         if(AccName.getText().isEmpty() || AccCnic.getText().isEmpty() ||AccNo.getText().isEmpty() || AccPin.getText().isEmpty())
         {
@@ -268,12 +274,13 @@ public class SignUp extends javax.swing.JFrame {
                int row = Add.executeUpdate();
                JOptionPane.showMessageDialog(this, "Account Saved");
                Con.close();
+               Clear();
            } catch(Exception e){
                JOptionPane.showMessageDialog(this, e);
            }
         }
         
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_SignUpMouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,7 +322,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField AccName;
     private javax.swing.JTextField AccNo;
     private javax.swing.JTextField AccPin;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton SignUp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
