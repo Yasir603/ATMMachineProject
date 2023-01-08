@@ -249,7 +249,7 @@ public class ATMMain extends javax.swing.JFrame {
     }//GEN-LAST:event_depositActionPerformed
 
     private void depositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositMouseClicked
-                new Deposit().setVisible(true);
+                new Deposit(MyAccNum).setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_depositMouseClicked
 
@@ -264,12 +264,12 @@ public class ATMMain extends javax.swing.JFrame {
     }//GEN-LAST:event_CpinMouseClicked
 
     private void WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WithdrawMouseClicked
-                new WithDraw().setVisible(true);
+                new WithDraw(MyAccNum).setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_WithdrawMouseClicked
 
     private void CbalanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CbalanceMouseClicked
-                new Balance().setVisible(true);
+                new Balance(MyAccNum).setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_CbalanceMouseClicked
 

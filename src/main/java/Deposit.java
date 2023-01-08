@@ -23,7 +23,33 @@ public class Deposit extends javax.swing.JFrame {
     public Deposit() {
         initComponents();
     }
-
+   int MyAccNum;
+    public Deposit(int AccNum) {
+        initComponents();
+        MyAccNum = AccNum;
+        Number.setText(""+MyAccNum);
+        GetBalance();
+    }
+            Connection Con = null;
+            PreparedStatement pst =null, pst1=null;
+            ResultSet Rs = null, Rs1 =null;
+            java.sql.Statement St = null, St1 = null;
+            int OldBalance;
+    private void GetBalance(){
+        String Query = "select * from signup where cnic= '"+MyAccNum+"'";
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+            St1 =(java.sql.Statement) Con.createStatement();
+            Rs1 = St1.executeQuery(Query);
+            if(Rs1.next()){
+                OldBalance = Rs1.getInt(2); 
+            }else{
+               // JOptionPane.showMessageDialog(this, "Wrong Account No Or Pin");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,13 +62,13 @@ public class Deposit extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        AccNo = new javax.swing.JTextField();
         Deposit = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Amount = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        Number = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,17 +80,6 @@ public class Deposit extends javax.swing.JFrame {
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
-        jLabel5.setText("Enter Account No:");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        AccNo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        AccNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccNoActionPerformed(evt);
-            }
-        });
 
         Deposit.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         Deposit.setText("Submit");
@@ -109,6 +124,12 @@ public class Deposit extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel1.setText("Account Number:");
+
+        Number.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        Number.setText("SELECT ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -125,15 +146,15 @@ public class Deposit extends javax.swing.JFrame {
                 .addGap(108, 108, 108))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(35, 35, 35)
-                        .addComponent(AccNo, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42)
+                        .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -141,10 +162,10 @@ public class Deposit extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(AccNo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -210,10 +231,6 @@ public class Deposit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AccNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AccNoActionPerformed
-
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
                    new ATMMain().setVisible(true);
                    this.dispose();           // TODO add your handling code here:
@@ -230,31 +247,25 @@ public class Deposit extends javax.swing.JFrame {
     private void DepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DepositActionPerformed
-    Connection Con = null;
-    PreparedStatement pst =null;
-    ResultSet Rs = null;
-    Statement St = null;
-    
-    private void Clear(){
-        AccNo.setText("");
-        Deposit.setText("");
-    }
+
     private void DepositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DepositMouseClicked
         // TODO add your handling code here:
-            if(AccNo.getText().isEmpty() || Deposit.getText().isEmpty())
+            if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
         {
-            JOptionPane.showMessageDialog(this, "missing information");
+            JOptionPane.showMessageDialog(this, "Enter Valid Amount");
         }else{
            try{
+               String Query= "Update signup set balance=? where cnic=?";
                Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
-               PreparedStatement Add = Con.prepareStatement("insert into deposit values(?,?)");
-      
-               Add.setInt(3, Integer.valueOf(AccNo.getText()));
-               Add.setInt(4, Integer.valueOf(Deposit.getText()));
-               int row = Add.executeUpdate();
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance+Integer.valueOf(Amount.getText()));
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
                JOptionPane.showMessageDialog(this, "Amount Deposit Successfully");
-               Con.close();
-               Clear();
+               }else{
+                   JOptionPane.showMessageDialog(this, "Missing Information");
+                    }
            } catch(Exception e){
                JOptionPane.showMessageDialog(this, e);
            }
@@ -297,11 +308,11 @@ public class Deposit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AccNo;
     private javax.swing.JTextField Amount;
     private javax.swing.JButton Deposit;
+    private javax.swing.JLabel Number;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
