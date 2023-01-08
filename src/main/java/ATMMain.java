@@ -254,7 +254,7 @@ public class ATMMain extends javax.swing.JFrame {
     }//GEN-LAST:event_depositMouseClicked
 
     private void FcashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FcashMouseClicked
-                new FastCash().setVisible(true);
+                new FastCash(MyAccNum).setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_FcashMouseClicked
 
