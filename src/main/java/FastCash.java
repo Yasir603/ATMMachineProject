@@ -95,6 +95,11 @@ public class FastCash extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jButton3.setText("Rs 1000 ");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jButton4.setText("Rs 100 ");
@@ -108,14 +113,29 @@ public class FastCash extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jButton5.setText("Rs 5000 ");
         jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jButton6.setText("Rs 500 ");
         jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jButton7.setText("Rs 2000");
         jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -170,64 +190,61 @@ public class FastCash extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButton4)
-                            .addComponent(jButton3))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Balance1)
-                                .addGap(12, 12, 12)))
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7)
-                            .addComponent(jButton6)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton8)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Balance1))
+                            .addComponent(jLabel1))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(58, 58, 58))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton6))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton7)
+                    .addComponent(jLabel3)
+                    .addComponent(Balance1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton6))
-                        .addGap(57, 57, 57)
+                            .addComponent(jButton5)
+                            .addComponent(jButton8))
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton7)
-                            .addComponent(jLabel3)
-                            .addComponent(Balance1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton8))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton9))
-                .addGap(14, 14, 14))
+                            .addComponent(jButton9)
+                            .addComponent(jButton11))
+                        .addContainerGap())))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
@@ -311,8 +328,123 @@ public class FastCash extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        
+        if(OldBalance < 100)
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-100);
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
     }//GEN-LAST:event_jButton4MouseClicked
+    }
+    
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        if(OldBalance < 500)
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-500);
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+    }          
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        if(OldBalance < 1000)
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-1000);
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+    }          
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        if(OldBalance < 2000)
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-2000);
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+    }          
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        if(OldBalance < 5000)
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-5000);
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+    }          
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments

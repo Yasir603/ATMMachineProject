@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,19 +28,20 @@ public class WithDraw extends javax.swing.JFrame {
         Number.setText(""+MyAccNum);
         GetBalance();
     }
-    Connection Con = null;
+            Connection Con = null;
             PreparedStatement pst =null, pst1=null;
             ResultSet Rs = null, Rs1 =null;
             java.sql.Statement St = null, St1 = null;
-            int OldBalance
+            int OldBalance;
                  private void GetBalance(){
         String Query = "select * from signup where cnic= '"+MyAccNum+"'";
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
             St1 =(java.sql.Statement) Con.createStatement();
             Rs1 = St1.executeQuery(Query);
             if(Rs1.next()){
                 OldBalance = Rs1.getInt(5); 
+                Balance1.setText(""+OldBalance);
             }else{
                // JOptionPane.showMessageDialog(this, "Wrong Account No Or Pin");
             }
@@ -62,15 +63,15 @@ public class WithDraw extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Amount = new javax.swing.JTextField();
         Withdraw = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        AccPin = new javax.swing.JPasswordField();
         Logout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Number = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Balance1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,10 +83,6 @@ public class WithDraw extends javax.swing.JFrame {
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
-        jLabel5.setText("Enter Your Pincode :");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel1.setText("Enter Amount :");
@@ -123,13 +120,6 @@ public class WithDraw extends javax.swing.JFrame {
             }
         });
 
-        AccPin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        AccPin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccPinActionPerformed(evt);
-            }
-        });
-
         Logout.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         Logout.setText("Logout");
         Logout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -151,32 +141,36 @@ public class WithDraw extends javax.swing.JFrame {
         Number.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         Number.setText("SELECT ");
 
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel3.setText("Account Balance:");
+
+        Balance1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        Balance1.setText("SELECT ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(265, 265, 265))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(37, 37, 37)
-                                .addComponent(AccPin, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(104, 104, 104))))
+                .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Balance1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -196,15 +190,15 @@ public class WithDraw extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Balance1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AccPin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(34, 34, 34)
+                .addGap(49, 49, 49)
                 .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +242,7 @@ public class WithDraw extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,10 +284,6 @@ public class WithDraw extends javax.swing.JFrame {
                    this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_backMouseClicked
 
-    private void AccPinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccPinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AccPinActionPerformed
-
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
         // TODO add your handling code here:
                    new ATM().setVisible(true);
@@ -304,25 +294,22 @@ public class WithDraw extends javax.swing.JFrame {
 if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
         {
             JOptionPane.showMessageDialog(this, "Enter Valid Amount");
-        }else 
-    if(OldBalance>Integer.valueOf(Amount.getText()))
+        }else if(OldBalance < Integer.valueOf(Amount.getText()))
         {
             JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
-        }
-
-        else{
+        }else{
            try{
                String Query= "Update signup set balance=? where cnic=?";
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
                PreparedStatement Ps = Con.prepareStatement(Query);
                Ps.setInt(1,OldBalance-Integer.valueOf(Amount.getText()));
                Ps.setInt(2, MyAccNum);
                if(Ps.executeUpdate() == 1)
                {
                JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
-                              }else{
-                   JOptionPane.showMessageDialog(this, "Missing Information");
-                    }
+                }else{
+                      JOptionPane.showMessageDialog(this, "Missing Information");
+                     }
            } catch(Exception e){
                JOptionPane.showMessageDialog(this, e);
            }
@@ -367,15 +354,15 @@ if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField AccPin;
     private javax.swing.JTextField Amount;
+    private javax.swing.JLabel Balance1;
     private javax.swing.JButton Logout;
     private javax.swing.JLabel Number;
     private javax.swing.JButton Withdraw;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
