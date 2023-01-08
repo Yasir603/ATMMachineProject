@@ -259,7 +259,7 @@ public class ATMMain extends javax.swing.JFrame {
     }//GEN-LAST:event_FcashMouseClicked
 
     private void ChangepinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangepinMouseClicked
-                new ChangePin().setVisible(true);
+                new ChangePin(MyAccNum).setVisible(true);
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_ChangepinMouseClicked
 
