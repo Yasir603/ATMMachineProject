@@ -37,7 +37,7 @@ public class ATMMain extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Fcash = new javax.swing.JButton();
         deposit = new javax.swing.JButton();
-        Cpin = new javax.swing.JButton();
+        Changepin = new javax.swing.JButton();
         Withdraw = new javax.swing.JButton();
         Cbalance = new javax.swing.JButton();
         back = new javax.swing.JButton();
@@ -110,12 +110,12 @@ public class ATMMain extends javax.swing.JFrame {
             }
         });
 
-        Cpin.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        Cpin.setText("Change Pin");
-        Cpin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        Cpin.addMouseListener(new java.awt.event.MouseAdapter() {
+        Changepin.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Changepin.setText("Change Pin");
+        Changepin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Changepin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CpinMouseClicked(evt);
+                ChangepinMouseClicked(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class ATMMain extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Fcash)
-                            .addComponent(Cpin))
+                            .addComponent(Changepin))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Withdraw)
@@ -209,7 +209,7 @@ public class ATMMain extends javax.swing.JFrame {
                         .addComponent(deposit)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cpin)
+                    .addComponent(Changepin)
                     .addComponent(back))
                 .addGap(62, 62, 62))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,10 +258,10 @@ public class ATMMain extends javax.swing.JFrame {
                 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_FcashMouseClicked
 
-    private void CpinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CpinMouseClicked
+    private void ChangepinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangepinMouseClicked
                 new ChangePin().setVisible(true);
                 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_CpinMouseClicked
+    }//GEN-LAST:event_ChangepinMouseClicked
 
     private void WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WithdrawMouseClicked
                 new WithDraw(MyAccNum).setVisible(true);
@@ -319,7 +319,7 @@ public class ATMMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cbalance;
-    private javax.swing.JButton Cpin;
+    private javax.swing.JButton Changepin;
     private javax.swing.JButton Fcash;
     private javax.swing.JLabel Number;
     private javax.swing.JButton Withdraw;

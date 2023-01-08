@@ -42,7 +42,7 @@ public class Deposit extends javax.swing.JFrame {
             St1 =(java.sql.Statement) Con.createStatement();
             Rs1 = St1.executeQuery(Query);
             if(Rs1.next()){
-                OldBalance = Rs1.getInt(2); 
+                OldBalance = Rs1.getInt(5); 
             }else{
                // JOptionPane.showMessageDialog(this, "Wrong Account No Or Pin");
             }
