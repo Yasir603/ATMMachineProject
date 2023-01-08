@@ -2,6 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +26,30 @@ public class WithDraw extends javax.swing.JFrame {
         initComponents();
         MyAccNum = AccNum;
         Number.setText(""+MyAccNum);
+        GetBalance();
     }
+    Connection Con = null;
+            PreparedStatement pst =null, pst1=null;
+            ResultSet Rs = null, Rs1 =null;
+            java.sql.Statement St = null, St1 = null;
+            int OldBalance
+                 private void GetBalance(){
+        String Query = "select * from signup where cnic= '"+MyAccNum+"'";
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
+            St1 =(java.sql.Statement) Con.createStatement();
+            Rs1 = St1.executeQuery(Query);
+            if(Rs1.next()){
+                OldBalance = Rs1.getInt(5); 
+            }else{
+               // JOptionPane.showMessageDialog(this, "Wrong Account No Or Pin");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +102,11 @@ public class WithDraw extends javax.swing.JFrame {
         Withdraw.setText("Withdraw");
         Withdraw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Withdraw.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Withdraw.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WithdrawMouseClicked(evt);
+            }
+        });
         Withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WithdrawActionPerformed(evt);
@@ -265,6 +299,37 @@ public class WithDraw extends javax.swing.JFrame {
                    new ATM().setVisible(true);
                    this.dispose(); 
     }//GEN-LAST:event_LogoutMouseClicked
+
+    private void WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WithdrawMouseClicked
+if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
+        {
+            JOptionPane.showMessageDialog(this, "Enter Valid Amount");
+        }else 
+    if(OldBalance>Integer.valueOf(Amount.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Amount is greater than your balance");
+        }
+
+        else{
+           try{
+               String Query= "Update signup set balance=? where cnic=?";
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ATM","root","");
+               PreparedStatement Ps = Con.prepareStatement(Query);
+               Ps.setInt(1,OldBalance-Integer.valueOf(Amount.getText()));
+               Ps.setInt(2, MyAccNum);
+               if(Ps.executeUpdate() == 1)
+               {
+               JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+                              }else{
+                   JOptionPane.showMessageDialog(this, "Missing Information");
+                    }
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+        }        
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WithdrawMouseClicked
 
     /**
      * @param args the command line arguments
