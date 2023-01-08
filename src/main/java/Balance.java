@@ -23,11 +23,33 @@ public class Balance extends javax.swing.JFrame {
     public Balance() {
         initComponents();
     }
-    int MyAccNum;
+     int MyAccNum;
     public Balance(int AccNum) {
         initComponents();
         MyAccNum = AccNum;
         Number.setText(""+MyAccNum);
+        GetBalance();
+    }
+            Connection Con = null;
+            PreparedStatement pst =null, pst1=null;
+            ResultSet Rs = null, Rs1 =null;
+            java.sql.Statement St = null, St1 = null;
+            int OldBalance;
+    private void GetBalance(){
+        String Query = "select * from signup where cnic= '"+MyAccNum+"'";
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+            St1 =(java.sql.Statement) Con.createStatement();
+            Rs1 = St1.executeQuery(Query);
+            if(Rs1.next()){
+                OldBalance = Rs1.getInt(5); 
+                Balance1.setText(""+OldBalance);
+            }else{
+               // JOptionPane.showMessageDialog(this, "Wrong Account No Or Pin");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,11 +65,11 @@ public class Balance extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        CBalance = new javax.swing.JTextField();
         MTrans = new javax.swing.JButton();
         Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Number = new javax.swing.JLabel();
+        Balance1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,13 +89,6 @@ public class Balance extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 36)); // NOI18N
         jLabel2.setText("Checking Balance");
-
-        CBalance.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        CBalance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBalanceActionPerformed(evt);
-            }
-        });
 
         MTrans.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         MTrans.setText("Make Transection");
@@ -110,6 +125,9 @@ public class Balance extends javax.swing.JFrame {
         Number.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         Number.setText("SELECT ");
 
+        Balance1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        Balance1.setText("Balance ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -131,15 +149,13 @@ public class Balance extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(28, 28, 28)
-                                .addComponent(CBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(172, Short.MAX_VALUE))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Balance1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(157, 239, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +166,10 @@ public class Balance extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Number, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(CBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Balance1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(MTrans)
                 .addGap(50, 50, 50)
@@ -216,22 +232,6 @@ public class Balance extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-            Connection Con = null;
-            PreparedStatement pst =null;
-            ResultSet Rs = null;
-            Statement St = null;
-    private void CBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBalanceActionPerformed
-        // TODO add your handling code here:
-        
-         String Query = "select * from deposit where amount=";
-        try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
-            St =(Statement) Con.createStatement();
-            Rs = St.executeQuery(Query);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e);
-        }
-    }//GEN-LAST:event_CBalanceActionPerformed
 
     private void MTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTransActionPerformed
         // TODO add your handling code here:
@@ -289,7 +289,7 @@ public class Balance extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JTextField CBalance;
+    private javax.swing.JLabel Balance1;
     private javax.swing.JButton MTrans;
     private javax.swing.JLabel Number;
     private javax.swing.JLabel jLabel1;
