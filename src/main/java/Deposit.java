@@ -110,7 +110,7 @@ public class Deposit extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Symbol", 1, 24)); // NOI18N
-        jLabel9.setText("Deposite Amount To Your Account");
+        jLabel9.setText("Deposit Amount To Your Account");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
