@@ -138,7 +138,7 @@ public class ATMMain extends javax.swing.JFrame {
         });
 
         back.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        back.setText("Back");
+        back.setText("Logout");
         back.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

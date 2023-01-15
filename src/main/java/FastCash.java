@@ -311,13 +311,13 @@ public class FastCash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-                    new ATMMain().setVisible(true);
+                    new ATMMain(MyAccNum).setVisible(true);
                    this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
-                   new WithDraw().setVisible(true);
+                   new WithDraw(MyAccNum).setVisible(true);
                    this.dispose();
     }//GEN-LAST:event_jButton8MouseClicked
 

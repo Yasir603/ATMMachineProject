@@ -238,7 +238,7 @@ public class Balance extends javax.swing.JFrame {
     }//GEN-LAST:event_MTransActionPerformed
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-            new ATMMain().setVisible(true);
+            new ATMMain(MyAccNum).setVisible(true);
                    this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_BackMouseClicked
 
@@ -248,7 +248,7 @@ public class Balance extends javax.swing.JFrame {
 
     private void MTransMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MTransMouseClicked
         // TODO add your handling code here:
-         new WithDraw().setVisible(true);
+         new WithDraw(MyAccNum).setVisible(true);
                    this.dispose(); 
     }//GEN-LAST:event_MTransMouseClicked
 

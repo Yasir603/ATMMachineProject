@@ -280,7 +280,7 @@ public class WithDraw extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutActionPerformed
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-                   new ATMMain().setVisible(true);
+                   new ATMMain(MyAccNum).setVisible(true);
                    this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_backMouseClicked
 

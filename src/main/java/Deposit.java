@@ -232,7 +232,7 @@ public class Deposit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-                   new ATMMain().setVisible(true);
+                   new ATMMain(MyAccNum).setVisible(true);
                    this.dispose();           // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
