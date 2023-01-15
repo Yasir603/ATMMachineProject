@@ -247,7 +247,25 @@ public class Deposit extends javax.swing.JFrame {
     private void DepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DepositActionPerformed
-
+private void DepositMoney()
+{
+    try{
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Add = Con.prepareStatement("insert into signup values(?,?,?,?,?)");
+               Add.setString(1,AccName.getText());
+               Add.setInt(2, Integer.valueOf(AccCnic.getText()));
+               Add.setInt(3, Integer.valueOf(AccNo.getText()));
+               Add.setInt(4, Integer.valueOf(AccPin.getText()));
+               Add.setInt(5, Integer.valueOf(Balance.getText()));
+               
+               int row = Add.executeUpdate();
+              /// JOptionPane.showMessageDialog(this, "Account Saved");
+               Con.close();
+               ////Clear();
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+}
     private void DepositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DepositMouseClicked
         // TODO add your handling code here:
             if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
@@ -263,6 +281,7 @@ public class Deposit extends javax.swing.JFrame {
                if(Ps.executeUpdate() == 1)
                {
                JOptionPane.showMessageDialog(this, "Amount Deposit Successfully");
+               DepositMoney();
                }else{
                    JOptionPane.showMessageDialog(this, "Missing Information");
                     }
