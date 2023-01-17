@@ -249,19 +249,19 @@ public class Deposit extends javax.swing.JFrame {
     }//GEN-LAST:event_DepositActionPerformed
 private void DepositMoney()
 {
-    try{
+   try{
                Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
-               PreparedStatement Add = Con.prepareStatement("insert into signup values(?,?,?,?,?)");
-               Add.setString(1,AccName.getText());
-               Add.setInt(2, Integer.valueOf(AccCnic.getText()));
-               Add.setInt(3, Integer.valueOf(AccNo.getText()));
-               Add.setInt(4, Integer.valueOf(AccPin.getText()));
-               Add.setInt(5, Integer.valueOf(Balance.getText()));
+               PreparedStatement Add = Con.prepareStatement("insert into transection values(?,?,?,?)");
+               Add.setInt(1,1);
+               Add.setInt(2, MyAccNum);
+               Add.setString(3, "Deposit");
+               Add.setInt(4, Integer.valueOf(Amount.getText()));
+             
                
                int row = Add.executeUpdate();
-              /// JOptionPane.showMessageDialog(this, "Account Saved");
+              // JOptionPane.showMessageDialog(this, "Account Saved");
                Con.close();
-               ////Clear();
+               //Clear();
            } catch(Exception e){
                JOptionPane.showMessageDialog(this, e);
            }

@@ -21,6 +21,7 @@ public class WithDraw extends javax.swing.JFrame {
     public WithDraw() {
         initComponents();
     }
+    
   int MyAccNum;
     public WithDraw(int AccNum) {
         initComponents();
@@ -289,7 +290,25 @@ public class WithDraw extends javax.swing.JFrame {
                    new ATM().setVisible(true);
                    this.dispose(); 
     }//GEN-LAST:event_LogoutMouseClicked
-
+private void WithdrawMoney()
+{
+   try{
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+               PreparedStatement Add = Con.prepareStatement("insert into transection values(?,?,?,?)");
+               Add.setInt(1,1);
+               Add.setInt(2, MyAccNum);
+               Add.setString(3, "Withdraw");
+               Add.setInt(4, Integer.valueOf(Amount.getText()));
+             
+               
+               int row = Add.executeUpdate();
+              // JOptionPane.showMessageDialog(this, "Account Saved");
+               Con.close();
+               //Clear();
+           } catch(Exception e){
+               JOptionPane.showMessageDialog(this, e);
+           }
+}
     private void WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WithdrawMouseClicked
 if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
         {
@@ -307,6 +326,7 @@ if(Amount.getText().isEmpty()|| Amount.getText().equals(0))
                if(Ps.executeUpdate() == 1)
                {
                JOptionPane.showMessageDialog(this, "Amount withdrawn Successfully");
+               WithdrawMoney();
                 }else{
                       JOptionPane.showMessageDialog(this, "Missing Information");
                      }

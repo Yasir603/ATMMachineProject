@@ -60,7 +60,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="305" max="32767" attributes="0"/>
+                  <EmptySpace pref="314" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,29 +122,37 @@
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <Component id="deposit" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Fcash" min="-2" max="-2" attributes="0"/>
                               <Component id="Changepin" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="237" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Withdraw" min="-2" max="-2" attributes="0"/>
-                              <Component id="back" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="Cbalance" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Ministatement" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="deposit" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="Number" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="Number" min="-2" pref="145" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
+                          <Component id="back" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -182,9 +190,10 @@
                   <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Changepin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="back" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Ministatement" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="back" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -318,6 +327,23 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SELECT OPTION"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Ministatement">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Sylfaen" size="24" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Mini Statement"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder roundedCorners="true" thickness="2"/>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MinistatementMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MinistatementActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

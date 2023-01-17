@@ -43,6 +43,7 @@ public class ATMMain extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         Number = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        Ministatement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +60,7 @@ public class ATMMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(195, 195, 195)
                 .addComponent(jLabel8)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +158,20 @@ public class ATMMain extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel3.setText("SELECT OPTION");
 
+        Ministatement.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Ministatement.setText("Mini Statement");
+        Ministatement.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Ministatement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MinistatementMouseClicked(evt);
+            }
+        });
+        Ministatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinistatementActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -165,23 +180,28 @@ public class ATMMain extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(deposit)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Fcash)
                             .addComponent(Changepin))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Withdraw)
-                            .addComponent(back)
-                            .addComponent(Cbalance))
-                        .addGap(184, 184, 184))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(deposit)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(Cbalance)
+                            .addComponent(Ministatement))
+                        .addGap(184, 184, 184))))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(back)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -210,8 +230,9 @@ public class ATMMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Changepin)
-                    .addComponent(back))
-                .addGap(62, 62, 62))
+                    .addComponent(Ministatement))
+                .addGap(26, 26, 26)
+                .addComponent(back))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
@@ -282,6 +303,16 @@ public class ATMMain extends javax.swing.JFrame {
                    this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_backMouseClicked
 
+    private void MinistatementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinistatementMouseClicked
+        // TODO add your handling code here:
+                    new ministatement(MyAccNum).setVisible(true);
+                    this.dispose();
+    }//GEN-LAST:event_MinistatementMouseClicked
+
+    private void MinistatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinistatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MinistatementActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +352,7 @@ public class ATMMain extends javax.swing.JFrame {
     private javax.swing.JButton Cbalance;
     private javax.swing.JButton Changepin;
     private javax.swing.JButton Fcash;
+    private javax.swing.JButton Ministatement;
     private javax.swing.JLabel Number;
     private javax.swing.JButton Withdraw;
     private javax.swing.JButton back;
