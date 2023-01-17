@@ -7,14 +7,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Faisal
  */
 public class ministatement extends javax.swing.JFrame {
+
+    
 
     /**
      * Creates new form ministatement
@@ -39,7 +42,8 @@ public class ministatement extends javax.swing.JFrame {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
             st = Con.createStatement();
             rs = st.executeQuery("select * from transection where AccNo ="+MyAccNum+" ");
-            ministatement.setModel(DbUAtils.resultSetToTableModel(rs));
+           // ministatement.setModel(DbUtils.resultSetToTableModel(rs));
+           ministatement.setModel(DbUtils.resultSetToTableModel(rs));
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e);
         }
@@ -59,6 +63,7 @@ public class ministatement extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ministatement = new javax.swing.JTable();
+        Gst = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,42 +94,77 @@ public class ministatement extends javax.swing.JFrame {
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Tid", "AccNum", "Name", "Balance"
+                "Tid", "AccNo", "Type", "Balance"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(ministatement);
+        if (ministatement.getColumnModel().getColumnCount() > 0) {
+            ministatement.getColumnModel().getColumn(0).setResizable(false);
+            ministatement.getColumnModel().getColumn(1).setResizable(false);
+            ministatement.getColumnModel().getColumn(2).setResizable(false);
+            ministatement.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        Gst.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        Gst.setText("Get Statement");
+        Gst.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        Gst.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GstMouseClicked(evt);
+            }
+        });
+        Gst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GstActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(Gst, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(jButton4))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(Gst)))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
@@ -187,6 +227,23 @@ public class ministatement extends javax.swing.JFrame {
         new ATMMain(MyAccNum).setVisible(true);
         this.dispose();           // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void GstMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GstMouseClicked
+        // TODO add your handling code here:
+         try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
+            st = Con.createStatement();
+            rs = st.executeQuery("select * from transection where AccNo ="+MyAccNum+" ");
+           // ministatement.setModel(DbUtils.resultSetToTableModel(rs));
+           Gst.setModel((ButtonModel) DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_GstMouseClicked
+
+    private void GstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GstActionPerformed
            
     /**
      * @param args the command line arguments
@@ -224,6 +281,7 @@ public class ministatement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Gst;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -232,4 +290,18 @@ public class ministatement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable ministatement;
     // End of variables declaration//GEN-END:variables
+
+    private static class DbUtils {
+
+        private static TableModel resultSetToTableModel(ResultSet rs) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public DbUtils() {
+        }
+    }
+
+
+
+  
 }
