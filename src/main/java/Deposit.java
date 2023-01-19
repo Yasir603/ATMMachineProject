@@ -260,12 +260,12 @@ private void DepositMoney()
 {
    try{
                Con = DriverManager.getConnection("jdbc:mysql://localhost:3308/ATM","root","admin");
-               PreparedStatement Add = Con.prepareStatement("insert into transection values(?,?,?,?)");
+               PreparedStatement Add = Con.prepareStatement("INSERT INTO `transection`(`AccNo`, `Type`, `Balance`) VALUES (?,?,?)");
                    
-               Add.setInt(1,1);
-               Add.setInt(2, MyAccNum);
-               Add.setString(3, "Deposit");
-               Add.setInt(4, Integer.valueOf(Amount.getText()));
+       //        Add.setInt(1,1);
+               Add.setInt(1, MyAccNum);
+               Add.setString(2, "Deposit");
+               Add.setInt(3, Integer.valueOf(Amount.getText()));
              
                
                int row = Add.executeUpdate();
